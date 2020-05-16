@@ -1,8 +1,8 @@
 import Vue from 'vue';
 
-import NavBar from './components/NavBar.vue';
+import MainComponent from './components/MainComponent.vue';
 
 new Vue({
     el: '#app',
-    components: { NavBar }
+    components: { MainComponent }
 })
