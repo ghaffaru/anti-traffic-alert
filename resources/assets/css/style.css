@@ -1,0 +1,31 @@
+html,
+body,
+header,
+#intro {
+  height: 100%;
+}
+.upload {
+  display: none;
+  color: green;
+}
+#intro {
+  background: url("../img/hero.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+.top-nav-collapse,
+.page-footer {
+  background-color: #24355c;
+}
+@media (max-width: 768px) {
+  .navbar:not(.top-nav-collapse) {
+    background-color: #24355c;
+  }
+}
+@media (min-width: 800px) and (max-width: 850px) {
+  .navbar:not(.top-nav-collapse) {
+    background-color: #24355c;
+  }
+}
