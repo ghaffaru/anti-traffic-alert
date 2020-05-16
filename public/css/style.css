@@ -5,7 +5,7 @@ header,
   height: 100%;
 }
 .upload {
-  display: none;
+  /* display: none; */
   color: green;
 }
 #intro {
