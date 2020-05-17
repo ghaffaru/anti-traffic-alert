@@ -2,18 +2,34 @@
 
 namespace App\Http\Controllers;
 
+use App\AbuseReport;
+use App\Http\Requests\ReportAbuseRequest;
 use Illuminate\Http\Request;
 
 class ReportAbuseController extends Controller
 {
     //
-    public function submit(Request $request) 
+    public function submit(ReportAbuseRequest $request) 
     {
-        $request->validate([
-            'description' => 'required',
-            'media' => 'required'
-        ]);
+        if ($request->hasFile('media_url')) 
+        {
+            $report = AbuseReport::create($request->all());
 
-    
+            $fileNameToStore = $request->file('media_url')->getClientOriginalName();
+            $ext = $request->file('media_url')->getClientOriginalExtension();
+
+
+            $path = 'public/images/media/';
+
+            $request->file('media_url')->storeAs($path, $report->id . '.'.$ext);
+
+            $report->media_url = $path . '/'.$fileNameToStore;
+
+            $report->save();
+            
+            return response()->json([
+                'message' => 'Case added'
+            ]);
+        }
     }
 }
