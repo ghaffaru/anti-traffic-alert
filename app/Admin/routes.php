@@ -12,4 +12,5 @@ Route::group([
 
     $router->get('/', 'HomeController@index')->name('admin.home');
     $router->resource('abuse-reports', CaseController::class);
+    $router->resource('contacts', UserController::class);
 });
