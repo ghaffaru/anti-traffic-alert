@@ -14344,7 +14344,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -14357,6 +14357,19 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(35);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -14473,14 +14486,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
       descriptionError: "",
       fileError: "",
-      caseSubmitted: false
+      submitted: false,
+
+      submittedSuccessMessage: '',
+      submittedErrorMessage: ''
     };
   },
 
   methods: {
     handleFileUpload: function handleFileUpload() {
       this.file = this.$refs.file.files[0];
-      var fileTypes = ["image/png", "image/jpg", "image/gif", "video/mp4", "video/webm"];
+      var fileTypes = ["image/png", "image/jpg", "image/jpeg", "image/gif", "video/mp4", "video/webm", "video/ogg"];
 
       if (fileTypes.indexOf(this.file.type) == -1) {
         this.fileError = "File must be an image or video";
@@ -14491,7 +14507,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     submit: function submit() {
       var _this = this;
 
-      var fileTypes = ["image/png", "image/jpg", "image/gif", "video/mp4", "video/webm"];
+      var fileTypes = ["image/png", "image/jpg", "image/jpeg", "image/gif", "video/mp4", "video/webm", "video/ogg"];
 
       if (this.description == "") {
         this.descriptionError = "The description field is required";
@@ -14500,6 +14516,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       } else if (fileTypes.indexOf(this.file.type) == -1) {
         this.fileError = "File must be an image or video";
       } else {
+        this.submitted = true;
         var formData = new FormData();
         formData.append("name", this.name);
         formData.append("email", this.email);
@@ -14509,10 +14526,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         formData.append("media_url", this.file);
 
         __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post("/api/report", formData).then(function (response) {
-          console.log(response.data);
-          _this.caseSubmitted = true;
+          // console.log(response.data);
+          _this.submittedSuccessMessage = 'Thank you, you case has been recorded';
+          _this.name = _this.email = _this.phone = _this.location = _this.file = '';
+          _this.submitted = false;
         }).catch(function (err) {
-          console.log(err);
+          // console.log(err);
+          _this.submittedErrorMessage = 'Error in submission, please try again';
+          _this.submitted = false;
         });
       }
     },
@@ -15429,10 +15450,18 @@ var render = function() {
       _vm._v("Report Abuse")
     ]),
     _vm._v(" "),
-    _vm.caseSubmitted
-      ? _c("p", { staticClass: "text-center upload" }, [
-          _vm._v("Uploaded successfully")
-        ])
+    _vm.submittedSuccessMessage
+      ? _c(
+          "div",
+          { staticClass: "alert alert-primary", attrs: { role: "alert" } },
+          [_vm._v(_vm._s(_vm.submittedSuccessMessage))]
+        )
+      : _vm.submittedErrorMessage
+      ? _c(
+          "div",
+          { staticClass: "alert alert-danger", attrs: { role: "alert" } },
+          [_vm._v(_vm._s(_vm.submittedErrorMessage))]
+        )
       : _vm._e(),
     _vm._v(" "),
     _c("div", { staticClass: "row" }, [
@@ -15653,7 +15682,27 @@ var render = function() {
               ? _c("span", [_vm._v("File Name: " + _vm._s(_vm.file.name))])
               : _vm._e(),
             _vm._v(" "),
-            _vm._m(1)
+            _c("div", { staticClass: "text-center mt-4" }, [
+              !_vm.submitted
+                ? _c("button", { staticClass: "btn btn-primary submitBtn" }, [
+                    _vm._v("\n            Send\n            "),
+                    _c("i", { staticClass: "far fa-paper-planeml-1" })
+                  ])
+                : _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-primary",
+                      attrs: { type: "submit", disabled: "" }
+                    },
+                    [
+                      _c("span", {
+                        staticClass: "spinner-border spinner-border-sm",
+                        attrs: { role: "status", "aria-hidden": "true" }
+                      }),
+                      _vm._v("\n              Loading...\n            ")
+                    ]
+                  )
+            ])
           ]
         )
       ])
@@ -15674,17 +15723,6 @@ var staticRenderFns = [
         },
         [_vm._v("Upload image/video")]
       )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "text-center mt-4" }, [
-      _c("button", { staticClass: "btn btn-primary submitBtn" }, [
-        _vm._v("\n            Send\n            "),
-        _c("i", { staticClass: "far fa-paper-planeml-1" })
-      ])
     ])
   }
 ]

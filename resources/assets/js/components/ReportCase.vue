@@ -1,7 +1,16 @@
 <template>
   <section id="report-abuse">
     <h2 class="font-weight-bold text-center">Report Abuse</h2>
-    <p class="text-center upload" v-if="caseSubmitted">Uploaded successfully</p>
+     <div
+            class="alert alert-primary"
+            role="alert"
+            v-if="submittedSuccessMessage"
+          >{{ submittedSuccessMessage }}</div>
+          <div
+            class="alert alert-danger"
+            role="alert"
+            v-else-if="submittedErrorMessage"
+          >{{ submittedErrorMessage }}</div>
     <div class="row">
       <div class="col-lg-12 col-md-12">
         <form class="p-3 grey-text" @submit.prevent="submit" enctype="multipart/form-data">
@@ -88,10 +97,14 @@
           <span v-if="file">File Name: {{ file.name }}</span>
 
           <div class="text-center mt-4">
-            <button class="btn btn-primary submitBtn">
+            <button class="btn btn-primary submitBtn" v-if="!submitted">
               Send
               <i class="far fa-paper-planeml-1"></i>
             </button>
+             <button class="btn btn-primary" type="submit" disabled v-else>
+                <span  class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                Loading...
+              </button>
           </div>
         </form>
       </div>
@@ -114,7 +127,10 @@ export default {
 
       descriptionError: "",
       fileError: "",
-      caseSubmitted: false
+      submitted: false,
+
+      submittedSuccessMessage: '',
+      submittedErrorMessage: ''
     };
   },
   methods: {
@@ -123,9 +139,11 @@ export default {
       let fileTypes = [
         "image/png",
         "image/jpg",
+        "image/jpeg",
         "image/gif",
         "video/mp4",
-        "video/webm"
+        "video/webm",
+        "video/ogg",
       ];
 
       if (fileTypes.indexOf(this.file.type) == -1) {
@@ -138,9 +156,11 @@ export default {
       let fileTypes = [
         "image/png",
         "image/jpg",
+        "image/jpeg",
         "image/gif",
         "video/mp4",
-        "video/webm"
+        "video/webm",
+        "video/ogg",
       ];
 
       if (this.description == "") {
@@ -150,6 +170,7 @@ export default {
       } else if (fileTypes.indexOf(this.file.type) == -1) {
         this.fileError = "File must be an image or video";
       } else {
+        this.submitted = true;
         let formData = new FormData();
         formData.append("name", this.name);
         formData.append("email", this.email);
@@ -161,11 +182,15 @@ export default {
         axios
           .post("/api/report", formData)
           .then(response => {
-            console.log(response.data);
-            this.caseSubmitted = true
+            // console.log(response.data);
+            this.submittedSuccessMessage = 'Thank you, you case has been recorded'
+            this.name = this.email = this.phone = this.location = this.file = ''
+            this.submitted = false;
           })
           .catch(err => {
-            console.log(err);
+            // console.log(err);
+            this.submittedErrorMessage = 'Error in submission, please try again'
+            this.submitted = false;
           });
       }
       

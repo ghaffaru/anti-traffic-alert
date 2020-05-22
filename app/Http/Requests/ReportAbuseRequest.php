@@ -26,7 +26,7 @@ class ReportAbuseRequest extends FormRequest
         return [
             //
             'description' => 'required',
-            'media_url' => 'required|file|mimes:mp4,webm,jpg,png,gif'
+            'media_url' => 'required|file|mimes:mp4,webm,ogg,mov,jpg,jpeg,png,gif'
         ];
     }
 }
