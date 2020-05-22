@@ -21,9 +21,10 @@ class ReportAbuseController extends Controller
 
             $path = 'public/images/media/';
 
-            $request->file('media_url')->storeAs($path, $report->id . '.'.$ext);
+            $request->file('media_url')->storeAs($path, $report->id . '_' .$fileNameToStore);
 
-            $report->media_url = $path . '/'.$fileNameToStore;
+            $report->media_url = $path . $report->id . '_' . $fileNameToStore;
+
 
             $report->save();
             

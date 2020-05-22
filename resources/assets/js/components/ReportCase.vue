@@ -61,7 +61,7 @@
               name="description"
             ></textarea>
             <label for="form8">Description</label>
-            <br />
+            
             <span style="color:red" v-if="descriptionError">{{ descriptionError }}</span>
           </div>
 

@@ -1,6 +1,6 @@
 <template>
   <header>
-      <NavBar></NavBar>
+      <NavBar />
       
       <div id="intro" class="view">
         <div class="mask rgba-black-strong">
@@ -42,6 +42,12 @@ export default {
 }
 </script>
 
-<style>
-    
+<style scoped>
+  #intro {
+  background: url("../../img/hero.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
 </style>

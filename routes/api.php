@@ -18,3 +18,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::post('/report', 'ReportAbuseController@submit');
+Route::post('/contact', 'ContactController@submit');

@@ -1,7 +1,9 @@
-<template>
-  <div>  
-    <HeaderComponent />
+<template >
+  <v-fragment>  
+    <!-- <HeaderComponent /> -->
+    <Hero />
     <main class="mt-5">
+
       <div class="container">
 
         <ReportCase />
@@ -18,7 +20,7 @@
     </main>
     <Footer />
     
-  </div>
+  </v-fragment>
 </template>
 
 <script>
@@ -27,13 +29,15 @@ import HeaderComponent from "./HeaderComponent";
 import Education from './Education';
 import Contact from './Contact';
 import Footer from './Footer';
+import Hero from './Hero';
 export default {
   components: {
     ReportCase,
     HeaderComponent,
     Education,
     Contact,
-    Footer
+    Footer,
+    Hero
   }
 }
 </script>

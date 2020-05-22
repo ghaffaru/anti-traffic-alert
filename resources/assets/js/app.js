@@ -1,5 +1,6 @@
 import Vue from 'vue';
-
+import { Plugin } from "vue-fragment";
+Vue.use(Plugin);
 import MainComponent from './components/MainComponent.vue';
 
 require("bootstrap-css-only/css/bootstrap.min.css");

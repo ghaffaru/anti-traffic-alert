@@ -19,6 +19,7 @@
         "vue": "^2.5.7"
     },
     "dependencies": {
-        "mdbvue": "^6.7.1"
+        "mdbvue": "^6.7.1",
+        "vue-fragment": "^1.5.1"
     }
 }
