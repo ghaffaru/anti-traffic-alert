@@ -8,6 +8,7 @@
         <mdb-navbar-toggler>
           <mdb-navbar-nav>
             <mdb-nav-item href waves-fixed active>Home</mdb-nav-item>
+             <mdb-nav-item href="#aboutus" waves-fixed>About</mdb-nav-item>
             <mdb-nav-item href="#report-abuse" waves-fixed>Report Case</mdb-nav-item>
             <mdb-nav-item href="#education" waves-fixed>Education</mdb-nav-item>
             <mdb-nav-item href="#contacts" waves-fixed>Contact</mdb-nav-item>
