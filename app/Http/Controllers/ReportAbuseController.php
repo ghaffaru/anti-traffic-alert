@@ -19,7 +19,7 @@ class ReportAbuseController extends Controller
             $ext = $request->file('media_url')->getClientOriginalExtension();
 
 
-            $path = 'public/images/media/';
+            $path = 'public/images/media/cases';
 
             $request->file('media_url')->storeAs($path, $report->id . '_' .$fileNameToStore);
 
