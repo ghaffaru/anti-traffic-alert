@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateTimerRequest extends FormRequest
+class CreateAlarmRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,12 +25,7 @@ class CreateTimerRequest extends FormRequest
     {
         return [
             //
-            'name' => 'required',
-            'startTime' => 'required',
-            'repeatInterval' => 'required',
-            'repeatType' => 'required',
-            'active' => 'required',
-            'alarmID' => 'required' 
+            'alarm' => 'required|mimes:application/octet-stream,audio/mpeg,mpga,mp3,wav'
         ];
     }
 }
