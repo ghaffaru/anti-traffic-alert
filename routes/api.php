@@ -28,3 +28,4 @@ Route::post('/alarms', 'AlarmController@create');
 Route::get('/alarms', 'AlarmController@index');
 
 Route::post('/timers', 'TimerController@create');
+Route::get('/timers', 'TimerController@index');
