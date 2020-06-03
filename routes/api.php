@@ -22,3 +22,5 @@ Route::post('/contact', 'ContactController@submit');
 
 Route::post('/user/register', 'UserController@register');
 Route::post('/user/login', 'UserController@login');
+
+Route::post('/timer/create', 'TimerController@create');
