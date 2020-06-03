@@ -26,4 +26,5 @@ Route::post('/user/login', 'UserController@login');
 
 Route::post('/alarms', 'AlarmController@create');
 Route::get('/alarms', 'AlarmController@index');
+
 Route::post('/timers', 'TimerController@create');

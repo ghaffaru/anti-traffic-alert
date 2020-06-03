@@ -26,11 +26,11 @@ class CreateTimerRequest extends FormRequest
         return [
             //
             'name' => 'required',
-            'startTime' => 'required',
-            'repeatInterval' => 'required',
-            'repeatType' => 'required',
+            'start_time' => 'required',
+            'repeat_interval' => 'required',
+            'repeat_type' => 'required',
             'active' => 'required',
-            'alarmID' => 'required' 
+            'alarm_id' => 'required' 
         ];
     }
 }
