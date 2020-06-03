@@ -145,7 +145,7 @@ export default {
         this.emailError = "";
       }
     },
-
+    
     validateSubject() {
       if (this.subject == "") {
         this.subjectError = "The subject field is required";

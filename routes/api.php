@@ -19,3 +19,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::post('/report', 'ReportAbuseController@submit');
 Route::post('/contact', 'ContactController@submit');
+
+Route::post('/user/register', 'UserController@register');
+Route::post('/user/login', 'UserController@login');
