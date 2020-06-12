@@ -96,7 +96,7 @@ export default {
   }
 }
 .view {
-  background-image: url("../../img/hero.jpg");
+  background-image: url("../../public/img/hero.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;

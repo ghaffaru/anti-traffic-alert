@@ -44,7 +44,7 @@ export default {
 
 <style scoped>
   #intro {
-  background: url("../../img/hero.jpg") no-repeat center center fixed;
+  background: url("../../public/img/hero.jpg") no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;

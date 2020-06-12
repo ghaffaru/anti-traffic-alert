@@ -29,3 +29,5 @@ Route::get('/alarms', 'AlarmController@index');
 
 Route::post('/timers', 'TimerController@create');
 Route::get('/timers', 'TimerController@index');
+
+Route::resource('post', 'PostController');

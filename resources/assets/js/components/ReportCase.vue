@@ -136,6 +136,7 @@ export default {
   methods: {
     handleFileUpload() {
       this.file = this.$refs.file.files[0];
+      
       let fileTypes = [
         "image/png",
         "image/jpg",

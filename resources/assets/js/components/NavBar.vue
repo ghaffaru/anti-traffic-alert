@@ -5,7 +5,7 @@
         <div class="container">
           <a class="navbar-brand" href="#">
             <img
-              src="../../img/logo.png"
+              src="../../public/img/logo.png"
               alt="Anti Traffik Alert"
               width="50"
               height="50"
