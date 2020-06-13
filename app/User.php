@@ -52,9 +52,4 @@ class User extends Authenticatable implements JWTSubject
     {
         return $this->hasMany(Alarm::class);
     }
-
-    public function timers()
-    {
-        return $this->hasMany(Timer::class);
-    }
 }

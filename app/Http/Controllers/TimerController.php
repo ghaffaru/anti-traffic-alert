@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateTimerRequest;
-use App\Http\Resources\TimerResource;
 use App\Timer;
 use Illuminate\Http\Request;
 
@@ -14,16 +13,13 @@ class TimerController extends Controller
     public function __construct()
     {
         $this->middleware('auth:api');
-
-
     }
 
     public function index()
     {
-        $user_timers = auth('api')->user()->timers;
-
-        return TimerResource::collection($user_timers);
+        
     }
+
     public function create(CreateTimerRequest $request)
     {
         $user_id = auth('api')->user()->id;
@@ -43,4 +39,6 @@ class TimerController extends Controller
             'timer' => $timer
         ]);
     }
+
+    
 }
